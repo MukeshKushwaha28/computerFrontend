@@ -26,11 +26,11 @@ const ImageSlider = () => {
   };
 
   const images = [
-    "../../public/Images/3.jpg",
-    "../../public/Images/1.png",
-    "../../public/Images/3.jpg",
-    "../../public/Images/4.jpg",
-    "../../public/Images/1.png",
+    "Images/3.jpg",
+    "Images/1.png",
+    "Images/3.jpg",
+    "Images/4.jpg",
+    "Images/1.png",
   ];
 
   return (
