@@ -131,7 +131,9 @@ const Header = () => {
 
             </ul>
           </div>
+          <Link style={{color:"white"}} to="/admin-login">Admin</Link>
         </div>
+        
       </nav>
     </div>
   );

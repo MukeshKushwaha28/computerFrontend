@@ -5,11 +5,11 @@
     padding-bottom: 20px;
     padding-right: 50px;
     min-height: 60vh;
-    background-color: rgb(206, 230, 134,.5);
+    background-color: rgba(243, 245, 235, 0.5);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: 100%;
 }
 
@@ -105,32 +105,52 @@
 }
 
 #Item1{
-    background-image: radial-gradient(circle, red, rgb(229, 54, 54,.8));
+    background-image: radial-gradient(circle, rgb(237, 194, 194,.2), rgb(229, 54, 54,.2));
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     
 }
 
+#Item1:hover{
+    background-image: radial-gradient(circle, rgb(237, 194, 194,.4), rgb(229, 54, 54,.4));
+}
+
 #Item2{
-    background-image: radial-gradient(rgb(69, 232, 69) 5%, rgb(69, 232, 69,.6) 60%);
+    background-image: radial-gradient(rgb(69, 232, 69,.2) 5%, rgb(69, 232, 69,.2) 60%);
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+#Item2:hover{
+    background-image: radial-gradient(rgb(69, 232, 69,.4) 5%, rgb(69, 232, 69,.4) 60%);
 }
 
 #Item4{
-    background-image: radial-gradient(circle, red, rgb(229, 54, 54,.8));
+    background-image: radial-gradient(circle, rgb(74, 48, 48,.2), rgba(227, 218, 218, 0.2));
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+#Item4:hover{
+    background-image: radial-gradient(circle, rgb(74, 48, 48,.4), rgba(227, 218, 218, 0.4));
 }
 
 #Item3{
-    background-image: radial-gradient(rgb(69, 232, 69) 5%, rgb(69, 232, 69,.6) 60%);
+    background-image: radial-gradient(rgb(25, 35, 25,.2) 5%, rgba(113, 160, 231, 0.2) 60%);
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+#Item3:hover{
+    background-image: radial-gradient(rgb(25, 35, 25,.4) 5%, rgba(113, 160, 231, 0.4) 60%);
 }
 
 

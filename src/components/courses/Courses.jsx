@@ -66,6 +66,7 @@
 // export default Courses;
 
 import React, { useState } from "react";
+import { Spinner } from "@chakra-ui/react";
 import {
   Card,
   CardHeader,
@@ -84,6 +85,7 @@ const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [catagory, setCatagory] = useState("");
   const [duration, setDuration] = useState("");
+  const[loading,setloading] = useState(false);
 
   const handleCatagoryChange = (e) => {
     setCatagory(e.target.value);
@@ -95,14 +97,18 @@ const Courses = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    setloading(true);
     console.log(catagory, duration);
     const response = await axios
       .get(
         `https://computerbackend-1.onrender.com/api/course/get-all-courses?category=${catagory}&duration=${duration}`
       )
       .then((response) => {
+        setloading(false);
         console.log(response.data);
         setCourses(response.data.data);
+        console.log(courses);
         // console.log(response.data.data);
       })
       .catch((error) => {
@@ -193,38 +199,57 @@ const Courses = () => {
 
       <div className="coursesContainer">
         <div className="content">
-          <div className="para">
+          {/* <div className="para">
             <p>Available Courses</p>
-          </div>
+          </div> */}
           <div className="courses">
-            {courses.map((course) => (
-              <>
-                <div className="course" key={course._id}>
-                  {/* <div className="courseName">{course.courseName}</div>
+            {loading? (
+              <Spinner />
+            ) : (
+                
+
+              courses.length === 0 ? (
+                <h1>Courses not found</h1>
+              ) :(
+              courses.map((course) => (
+                <>
+                  <div className="course" key={course._id}>
+                    {/* <div className="courseName">{course.courseName}</div>
                   <div className="courseDuration">{course.duration}</div>
                   <div className="courseCategory">{course.description}</div> */}
-                  {/* <div className="courseDescription">{course.description}</div> */}
-                </div>
+                    {/* <div className="courseDescription">{course.description}</div> */}
+                  </div>
 
-                <Card align="center" border={'1px solid black'} w={'280px'} className="card" >
-                  <CardHeader>
-                    <Heading size="md"> <div className="courseName">{course.courseName}</div></Heading>
-                  </CardHeader>
-                  <CardBody>
-                    <Text>
-                    <div className="courseDuration">{course.duration}</div>
-                    </Text>
+                  <Card
+                    align="center"
+                    border={"1px solid black"}
+                    w={"280px"}
+                    className="card"
+                  >
+                    <CardHeader>
+                      <Heading size="md">
+                        {" "}
+                        <div className="courseName">{course.courseName}</div>
+                      </Heading>
+                    </CardHeader>
+                    <CardBody>
+                      <Text>
+                        <div className="courseDuration">{course.duration}</div>
+                      </Text>
 
-                    <Text>
-                    <div className="courseCategory">{course.description}</div>
-                    </Text>
-                  </CardBody>
-                  <CardFooter>
-                    {/* <Button colorScheme="blue">View here</Button> */}
-                  </CardFooter>
-                </Card>
-              </>
-            ))}
+                      <Text>
+                        <div className="courseCategory">
+                          {course.description}
+                        </div>
+                      </Text>
+                    </CardBody>
+                    <CardFooter>
+                      {/* <Button colorScheme="blue">View here</Button> */}
+                    </CardFooter>
+                  </Card>
+                </>
+              )))
+            )}
           </div>
         </div>
       </div>

@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import Header from "../Header";
 import Footer from "../Footer";
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Registration() {
   const {
@@ -14,15 +16,48 @@ function Registration() {
     formState: { errors },
   } = useForm()
 
+
+  const data = {
+    states: {
+      Maharashtra: {
+        districts: {
+          Mumbai: ["Andheri", "Bandra", "Borivali"],
+          Pune: ["Shivajinagar", "Hinjewadi", "Kothrud"],
+        },
+      },
+      Karnataka: {
+        districts: {
+          Bangalore: ["Koramangala", "Indiranagar", "Whitefield"],
+          Mysore: ["Gokulam", "Vijayanagar", "Saraswathipuram"],
+        },
+      },
+      WestBengal: {
+        districts: {
+          Kolkata: ["Dumdum", "Ballygunge", "Park Street"],
+          Darjeeling: ["Siliguri", "Kalimpong", "Kurseong"],
+        },
+      },
+      TamilNadu: {
+        districts: {
+          Chennai: ["T. Nagar", "Adyar", "Velachery"],
+          Coimbatore: ["RS Puram", "Gandhipuram", "Peelamedu"],
+        },
+      },
+      // Add more states, districts, and towns as needed
+    },
+  };
+  
+
+
   const [courses, setCourses] = useState([]);
   const [franchises, setFranchises] = useState([]);
 
   const getData = async () => {
     const response = await axios.get("https://computerbackend-1.onrender.com/api/course/get-all-courses");
     const fresponse = await axios.get("https://computerbackend-1.onrender.com/api/admin/get-all-franchises");
-    console.log(response.data); 
+    // console.log(response.data); 
     setCourses(response.data.data);
-    console.log(fresponse.data);
+    // console.log(fresponse.data);
     setFranchises(fresponse.data.data);
   };
 
@@ -47,7 +82,7 @@ function Registration() {
 
 
   const onSubmit = async(data) => {
-    // console.log(data,"formdata");
+    console.log(data,"formdata");
     const data1 = new FormData();
     // data1.append("state", data.state);
     // data1.append("district", data.district);
@@ -67,6 +102,7 @@ function Registration() {
     data1.append("photo", data.photo[0]);
     data1.append("password", data.password);
     data1.append("id_proof", data.id_proof[0]);
+    console.log(data1,"Data1")
     await axios.post("https://computerbackend-1.onrender.com/api/student/student-register", data1,
     {
       headers: {
@@ -75,6 +111,7 @@ function Registration() {
       }
     })
     .then((response) => {
+      toast.success("registration succesfully");
       console.log(response);
     })
     .catch((error) => {
@@ -108,6 +145,7 @@ function Registration() {
   console.log(franchises);
   return (
     <>
+    <ToastContainer/>
       <Header />
       <div className="main">
       <div className="imgge"></div>
